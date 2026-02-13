@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte de incidentes</title>
+</head>
+<body>
+    <header>
+        <h1>Plataforma de Ciberseguridad Institucional</h1>
+        <p>Reporte Oficial de Incidentes y Amenazas Digitales</p>
+    </header>
+    <hr>
+
+    <main>
+        <form id="miformulario" autocomplete="off">
+
+            <fieldset>
+                <legend>Datos del Analista/Reportante</legend>
+                <p>
+                    <label for="analista_id">ID de Analista</label>
+                    <br>
+                    <input type="text" id="analista_id" name="analista_id"
+                           pattern="UAQFIF-[0-9]{3}" placeholder="UAQFIF-123"
+                           title="Debe iniciar con UAQFIF- seguido de 3 números" required>
+                </p>
+                <p>
+                    <label for="email">Correo Institucional</label>
+                    <br>
+                    <input type="email" id="email" name="email"
+                           placeholder="usuario@uaq.mx" required>
+                </p>
+                <p>
+                    <label for="telefono">Teléfono</label>
+                    <br>
+                    <input type="tel" id="telefono" name="telefono"
+                           placeholder="4422442233" required>
+                </p>
+            </fieldset>
+
+            <fieldset>
+                <legend>Clasificación del evento</legend>
+
+                <p>
+                    <label for="sistema">Sistema activo o afectado</label>
+                    <br>
+                    <select name="sistema" id="sistema" required>
+                        <option value="">--Seleccione un sistema--</option>
+                        <option value="base_datos">Base de datos central</option>
+                        <option value="sv_web">Sv web juriquilla</option>
+                        <option value="red_wifi">Red UAQ</option>
+                    </select>
+                </p>
+
+                <p>
+                    <label for="codigo_estado">Códigos de estado del incidente (HTTP)</label>
+                    <br>
+                    <input type="text" list="codigos_http" id="codigo_estado"
+                           name="codigo_estado" placeholder="Ej: 404" required>
+
+                    <datalist id="codigos_http">
+                        <option value="200 - OK (solicitud exitosa)">
+                        <option value="400 - Bad request (sintaxis inválida)">
+                        <option value="401 - Unauthorized (no autorizado)">
+                        <option value="403 - Forbidden (prohibido)">
+                        <option value="404 - Not found (no encontrado)">
+                        <option value="408 - Request timeout (tiempo de espera agotado)">
+                        <option value="409 - Conflict (conflicto)">
+                        <option value="500 - Internal server error (error interno del servidor)">
+                        <option value="502 - Bad gateway (puerta de enlace incorrecta)">
+                        <option value="503 - Service unavailable (servicio no disponible)">
+                    </datalist>
+                </p>
+
+                <p>
+                    <label for="url_pishing">URL sospechosa (si aplica)</label>
+                    <br>
+                    <input type="url" id="url_pishing" name="url_pishing"
+                           placeholder="https://www.ejemplo.com/login">
+                </p>
+
+                <p>
+                    <label for="fecha">Fecha y hora del hallazgo</label>
+                    <br>
+                    <input type="date" id="fecha" name="fecha" required>
+                    <input type="time" id="hora" name="hora" required>
+                </p>
+
+                <p>
+                    <label>Prioridad del incidente</label>
+                    <br>
+                    <input type="radio" id="p1" name="prioridad" value="critica">
+                    <label for="p1">Crítica</label>
+                    <input type="radio" id="p2" name="prioridad" value="alta">
+                    <label for="p2">Alta</label>
+                    <input type="radio" id="p3" name="prioridad" value="baja">
+                    <label for="p3">Informativa</label>
+                </p>
+
+            </fieldset>
+
+            <button type="submit">Enviar reporte</button>
+        </form>
+    </main>
+</body>
+</html>
