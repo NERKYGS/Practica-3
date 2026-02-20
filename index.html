@@ -98,9 +98,138 @@
                 </p>
 
             </fieldset>
+            <fieldset>
+
+                <legend>Activos Comprometidos</legend>
+                <p>Marque los elementos que presentan anomalias:</p>
+
+                <p>
+
+                    <input type="checkbox" id="equipo_final" name="activos" value="endpoint">
+                    <label for="equipo_final">Equipos de usuaios (PC/laptop)</label>
+                
+                </p>
+
+                <p>
+
+                    <input type="checkbox" id="servidor" name="activos" value="server">
+                    <label for="servidor">Servidores de aplicacion</label>
+
+                </p>
+
+                <p>
+                    <input type="checkbox" id="base_de_datos" name="activos" value="devices">
+                    <label for="base_de_datos">Dispocitivos mobiles</label>
+                
+                </p>
+
+                <p> 
+
+                    <input type="checkbox" id="red" name="activos" value="network">
+                    <label for="red"> Dispocitivos de Red (Switch/Router)</label>
+
+                </p>
+
+            </fieldset>
+
+            <fieldset>
+
+                <legend>Evidencia y Respuesta Inicial</legend>
+
+                <p>
+
+                    <label for="equipos">Numero de equipos comprometidos (1 - 100)</label>
+                    <input type="number" id="equipos" name="equipos" min="1" max="100" value="1">
+
+                </p>
+
+                <p>
+
+                    <label for="log">Adjuntar Log de Eventos (.log/.txt)</label>
+                    <br>
+                    <input type="file" id="log" name="archivo_log" accept=".log,.txt">
+                
+                </p>
+
+                <p>
+
+                    <label for="comentarios">Descripcion de la anomalia</label>
+                
+                    <textarea
+                    name="comentarios"
+                    id="comentarios"
+                    rows="4"
+                    cols="50"
+                    minlength="20"
+                    maxlength="50"
+                    placeholder="Minimo 20 caracteres sobre lo detectado">
+                    </textarea>
+
+                </p>
+
+                <p>
+
+                    <label for="certeza">Nivel de Certeza de la anomalia</label>
+                    <br>
+                    <input type="range" id="certeza" name="certeza" min="0" max="100" value="100"
+                    oninput="output_certeza.value = this.value + '%'" step="10">
+                    <output id="output_certeza">50%</output>
+
+                </p>
+                
+            </fieldset>
+
+            <div style="display: none;" aria-hidden="true">
+
+                <label for="bot_check"> Si ves esto, no lo llames</label>
+                <input type="text" id="bot_check" name="bot_check" tabindex="-1">
+            
+            </div>
+            
+            <div style="margin-top: 30px; margin-bottom: 50px;">
+                
+                <button type="button" onclick="confirmEnvio()" style="padding: 10px 20px; cursor: pointer">
+                    
+                    Enviar Reporte al centro de analisis
+                
+                </button>
+
+                <button type="reset" style="padding: 10px 20px; cursor: pointer;">
+                    Borrar todo
+                
+                </button>
+            
+            </div>
 
             <button type="submit">Enviar reporte</button>
         </form>
     </main>
+
+    <footer>
+
+    <p><strong>Aviso de Privacidad</strong>Toda la información enviada esta protegida bajo los protocolos de la ley general de protección de datos</p>
+    <p>Desarrollado para la clase de Desarrollo Web - 2026</p>
+    
+    </footer>
 </body>
+
+<script>
+    
+function confirmarEnvio() {
+    const form = document.getElementById('miFormulario');
+
+    if (!form.checkValidity()) {
+    form.reportValidity();
+    return
+    }
+
+    const respuesta = confirm("¿Estas seguro de enviar este reporte de accidente?");
+
+    if (respuesta) {
+    alert("Reporte enviado exitosamente");
+    document.getElementById('miFormulario').reset();
+    }
+}
+</script>
+
 </html>
